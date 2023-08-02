@@ -113,7 +113,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -121,7 +120,10 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 import os
+
+STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -133,9 +135,13 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     # 여기에 프론트엔드 도메인 또는 IP 주소를 추가해야 합니다.
     # 예를 들어, "http://frontend.example.com"와 같이 입력합니다.
+    "http://localhost:5173",
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
     "http://127.0.0.1:5173",
     "http://13.209.223.165",
     "http://13.209.223.165:5173",
+    "http://13.209.223.165:3000",
 ]
 
 CORS_ALLOWED_HEADERS = [
