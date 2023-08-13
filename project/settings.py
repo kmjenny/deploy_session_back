@@ -46,14 +46,15 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.common.CommonMiddleware",
+
+    # corsheaders
+    'corsheaders.middleware.CorsMiddleware', # 얘는 밑에꺼보다 위에 적어줘야함
+    "django.middleware.common.CommonMiddleware", # 보통 얜 이미 적혀있음
+    
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # corsheaders
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = "project.urls"
@@ -132,48 +133,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # CORS 설정
+# 더 알고 싶다면 https://oen-blog.tistory.com/46 참고!
+
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOW_CREDENTIALS = True
-
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:5173",
-    "http://127.0.0.1:3000",
-    "http://localhost:3000",
-    "http://127.0.0.1:5173",
-    "http://15.164.130.47.165",
-    "http://15.164.130.47:5173",
-    "http://15.164.130.47:3000",
-]
 
 CORS_ALLOWED_ORIGINS = [
     # 여기에 프론트엔드 도메인 또는 IP 주소를 추가해야 합니다.
     # 예를 들어, "http://frontend.example.com"와 같이 입력합니다.
-    "http://localhost:5173",
     "http://127.0.0.1:3000",
     "http://localhost:3000",
     "http://127.0.0.1:5173",
+    "http://localhost:5173",
     "http://15.164.130.47",
-    "http://15.164.130.47:5173",
     "http://15.164.130.47:3000",
-]
-
-CORS_ALLOWED_HEADERS = [
-    'accept',
-    'accept-encoding',
-    'authorization',
-    'content-type',
-    'dnt',
-    'origin',
-    'user-agent',
-    'x-csrftoken',
-    'x-requested-with',
-]
-
-CORS_ALLOWED_METHODS = [
-    'DELETE',
-    'GET',
-    'OPTIONS',
-    'PATCH',
-    'POST',
-    'PUT',
+    "http://15.164.130.47:5173",
 ]
