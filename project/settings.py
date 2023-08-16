@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    #"corsheaders",
+    "corsheaders",
     "app",
 
 ]
@@ -48,8 +48,8 @@ MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
 
     # corsheaders
-    #'corsheaders.middleware.CorsMiddleware', # 얘는 밑에꺼보다 위에 적어줘야함
-    #"django.middleware.common.CommonMiddleware", # 보통 얜 이미 적혀있음
+    'corsheaders.middleware.CorsMiddleware', # 얘는 밑에꺼보다 위에 적어줘야함
+    "django.middleware.common.CommonMiddleware", # 보통 얜 이미 적혀있음
     
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -131,7 +131,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-'''
+
 # CORS 설정
 # 더 알고 싶다면 https://oen-blog.tistory.com/46 참고!
 
@@ -149,4 +149,3 @@ CORS_ALLOWED_ORIGINS = [
     "http://15.164.130.47:3000",
     "http://15.164.130.47:5173",
 ]
-'''
