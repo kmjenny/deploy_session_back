@@ -1,0 +1,26 @@
+# 파이썬 3.8 이미지를 기반으로 함
+FROM python:3.8
+
+# 파이썬 버퍼링을 비활성화하여 터미널 출력을 보기 좋게 만듦
+ENV PYTHONUNBUFFERED 1
+
+# 작업 디렉터리를 /app으로 설정
+WORKDIR /app
+
+# 현재 디렉터리의 requirements.txt 파일을 컨테이너의 /app/ 디렉터리로 복사
+COPY requirements.txt /app/
+
+# requirements.txt에 나열된 파이썬 패키지 설치
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 현재 디렉터리의 모든 파일과 폴더를 컨테이너의 /app/ 디렉터리로 복사
+COPY . /app/
+
+# Django의 정적 파일 수집 --noinput이 자동 입력 해준다고 함
+RUN python manage.py collectstatic --noinput
+
+# /app/static과 /app/media 디렉터리의 권한을 변경
+RUN chmod -R 755 /app/static /app/media
+
+# gunicorn 웹 서버로 Django 애플리케이션 실행, 4개의 워커를 사용하며, 0.0.0.0:8000에서 바인드
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8000", "project.wsgi:application"]

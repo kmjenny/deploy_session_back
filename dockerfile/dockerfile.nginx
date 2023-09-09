@@ -1,0 +1,5 @@
+# nginx 공식 이미지 사용
+FROM nginx
+
+# 현재 디렉터리의 nginx.conf의 내용물을 /etc/nginx/nginx.cof에 복사
+COPY nginx.conf /etc/nginx/nginx.conf
