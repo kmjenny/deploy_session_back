@@ -20,7 +20,7 @@ COPY . /app/
 RUN python manage.py collectstatic --noinput
 
 # /app/static과 /app/media 디렉터리의 권한을 변경
-RUN chmod -R 755 /app/static /app/media
+# RUN chmod -R 755 /app/static /app/media
 
 # gunicorn 웹 서버로 Django 애플리케이션 실행, 4개의 워커를 사용하며, 0.0.0.0:8000에서 바인드
 CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8000", "project.wsgi:application"]
