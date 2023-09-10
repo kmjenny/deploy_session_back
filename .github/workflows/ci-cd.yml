@@ -19,7 +19,9 @@ jobs:
         echo DEBUG=${{ secrets.DJANGO_DEBUG }} >> .env
         echo API_URL=${{ secrets.DJANGO_API_URL }} >> .env
         echo WEB_URL=${{ secrets.DJANGO_WEB_URL }} >> .env
-        cat .env
+
+    - name: Display .env content
+      run: cat .env
 
     - name: Login to Docker Hub
       run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
